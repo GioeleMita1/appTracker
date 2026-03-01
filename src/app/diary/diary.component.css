@@ -1,0 +1,123 @@
+.diary-page {
+  padding: var(--ph-space-md) var(--ph-space-md) var(--ph-space-xl);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: var(--ph-space-sm);
+}
+
+.page-header .header-text {
+  min-width: 0;
+}
+
+.header-sub {
+  margin: 0;
+}
+
+.new-entry-row {
+  margin-bottom: var(--ph-space-lg);
+}
+
+.new-entry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ph-space-sm);
+}
+
+.diary-editor {
+  padding: var(--ph-space-lg);
+  margin-bottom: var(--ph-space-lg);
+}
+
+.editor-title {
+  margin-bottom: var(--ph-space-md);
+}
+
+.diary-title-input {
+  margin-bottom: var(--ph-space-md);
+}
+
+.label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ph-text-secondary);
+  margin-bottom: var(--ph-space-sm);
+}
+
+.diary-content-input {
+  resize: vertical;
+  min-height: 140px;
+  margin-bottom: var(--ph-space-md);
+}
+
+.editor-actions {
+  display: flex;
+  gap: var(--ph-space-sm);
+  justify-content: flex-end;
+}
+
+.diary-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ph-space-md);
+}
+
+.diary-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  transition: box-shadow 0.2s ease;
+}
+
+.diary-card:hover {
+  box-shadow: var(--ph-card-shadow-hover);
+}
+
+.diary-card-inner {
+  flex: 1;
+  padding: var(--ph-space-lg);
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.diary-card-title {
+  margin-bottom: var(--ph-space-sm);
+}
+
+.diary-card-preview {
+  margin: 0 0 var(--ph-space-sm);
+  font-size: 0.875rem;
+  color: var(--ph-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.diary-card-date {
+  display: block;
+}
+
+.diary-delete {
+  flex-shrink: 0;
+  align-self: center;
+  margin-right: var(--ph-space-sm);
+}
+
+.ph-btn-icon.danger:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--ph-space-2xl);
+  color: var(--ph-text-muted);
+}

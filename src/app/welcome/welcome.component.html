@@ -1,0 +1,27 @@
+<div class="welcome-page">
+  @if (!loading()) {
+    <div class="stars-container">
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
+    </div>
+    <div class="welcome-content">
+      <h1 class="welcome-title">Bentornato Gioele!</h1>
+      <p class="welcome-sub">Personal Hub Tracker</p>
+      <button type="button" class="welcome-btn" (click)="enterHub()">Accedi all'Hub</button>
+    </div>
+  } @else {
+    <div class="loader-wrapper">
+      <div class="loader">
+        <span><span></span><span></span><span></span><span></span></span>
+        <div class="base">
+          <span></span>
+          <div class="face"></div>
+        </div>
+      </div>
+      <div class="longfazers">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  }
+</div>

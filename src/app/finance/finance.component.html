@@ -1,0 +1,30 @@
+<div class="finance-page">
+  <header class="page-header">
+    <div class="header-text">
+      <h1 class="ph-h1">Finanza</h1>
+      <p class="ph-body header-sub">Entrate, uscite e saldo</p>
+    </div>
+  </header>
+
+  <div class="add-row">
+    <button type="button" class="ph-btn ph-btn-primary add-btn" (click)="openAdd()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nuovo movimento
+    </button>
+  </div>
+
+  <app-finance-dashboard />
+
+  @if (showForm()) {
+    <app-add-transaction
+      [transaction]="editingTransaction()"
+      (saved)="onSaved()"
+      (cancelled)="onCancelled()"
+    />
+  }
+
+  <app-transaction-list (editTransaction)="openEdit($event)" />
+</div>

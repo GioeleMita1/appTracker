@@ -1,0 +1,270 @@
+.todos-page {
+  padding: var(--ph-space-md) var(--ph-space-md) var(--ph-space-xl);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: var(--ph-space-sm);
+}
+
+.todos-title {
+  margin: 0;
+}
+
+.add-task-row {
+  margin-bottom: var(--ph-space-lg);
+}
+
+/* From Uiverse.io by Smit-Prajapati */
+.input-container {
+  display: flex;
+  background: white;
+  border-radius: 1rem;
+  background: linear-gradient(173deg, #23272f 0%, #14161a 100%);
+  box-shadow:
+    10px 10px 20px #0e1013,
+    -10px -10px 40px #383e4b;
+  padding: 0.3rem;
+  gap: 0.3rem;
+}
+
+.input-container input {
+  border-radius: 0.8rem;
+  background: #23272f;
+  box-shadow:
+    inset 5px 5px 10px #0e1013,
+    inset -5px -5px 10px #383e4b,
+    0px 0px 100px rgba(255, 212, 59, 0),
+    0px 0px 100px rgba(255, 102, 0, 0);
+  width: 100%;
+  flex-basis: 100%;
+  padding: 1rem;
+  border: none;
+  border: 1px solid transparent;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.input-container input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input-container input:focus {
+  border: 1px solid #ffd43b;
+  outline: none;
+  box-shadow:
+    inset 0px 0px 10px rgba(255, 102, 0, 0.5),
+    inset 0px 0px 10px rgba(255, 212, 59, 0.5),
+    0px 0px 100px rgba(255, 212, 59, 0.5),
+    0px 0px 100px rgba(255, 102, 0, 0.5);
+}
+
+@media (max-width: 500px) {
+  .input-container {
+    flex-direction: column;
+  }
+
+  .input-container input {
+    border-radius: 0.8rem;
+  }
+}
+
+.add-with-details-btn {
+  margin-top: var(--ph-space-sm);
+  background: none;
+  border: none;
+  color: var(--ph-text-muted);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.add-with-details-btn:hover {
+  color: var(--ph-text-secondary);
+}
+
+.add-task-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ph-space-sm);
+}
+
+/* Form nuova attività */
+.add-form-card {
+  padding: var(--ph-space-lg);
+  margin-bottom: var(--ph-space-lg);
+}
+
+.form-title {
+  margin-bottom: var(--ph-space-md);
+}
+
+.label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ph-text-secondary);
+  margin-bottom: var(--ph-space-xs);
+  margin-top: var(--ph-space-sm);
+}
+
+.label:first-of-type {
+  margin-top: 0;
+}
+
+.note-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--ph-space-sm);
+  justify-content: flex-end;
+  margin-top: var(--ph-space-md);
+}
+
+/* Timeline */
+.todos-timeline {
+  position: relative;
+  padding-left: var(--ph-space-lg);
+}
+
+.todos-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--ph-border);
+  border-radius: 1px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--ph-space-md);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: calc(-1 * var(--ph-space-lg) + 2px);
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ph-primary-bg);
+  border: 2px solid var(--ph-accent);
+  z-index: 1;
+}
+
+.timeline-marker.filled {
+  background: var(--ph-accent);
+}
+
+/* Card colorate */
+.todo-card {
+  --card-color: var(--ph-border-light);
+  border-radius: var(--ph-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ph-card-shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.todo-card:hover {
+  box-shadow: var(--ph-card-shadow-hover);
+}
+
+.todo-card-inner {
+  display: block;
+  width: 100%;
+  padding: var(--ph-space-md) var(--ph-space-lg);
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  background: var(--card-color);
+  min-height: 72px;
+}
+
+.todo-time {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ph-text-muted);
+  font-size: 0.75rem;
+}
+
+.todo-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ph-text-primary);
+  margin: 0 0 var(--ph-space-xs);
+}
+
+.todo-card-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ph-text-secondary);
+  line-height: 1.4;
+}
+
+.todo-card.completed .todo-card-title {
+  text-decoration: line-through;
+  color: var(--ph-text-muted);
+}
+
+.todo-card.completed .todo-card-desc {
+  color: var(--ph-text-muted);
+}
+
+.todo-card-actions {
+  position: absolute;
+  top: var(--ph-space-sm);
+  right: var(--ph-space-sm);
+  display: flex;
+  gap: var(--ph-space-xs);
+}
+
+.todo-action-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--ph-radius-sm);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ph-text-secondary);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.todo-action-btn:hover {
+  background: var(--ph-primary-bg);
+  color: var(--ph-text-primary);
+}
+
+.todo-action-btn.danger:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* Card con azioni: la card deve essere position relative */
+.todo-card {
+  position: relative;
+}
+
+.todo-card-edit {
+  padding: var(--ph-space-md);
+  background: var(--ph-primary-bg);
+}
+
+.todo-card-edit .form-actions {
+  margin-top: var(--ph-space-sm);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--ph-space-2xl) var(--ph-space-lg);
+  color: var(--ph-text-muted);
+}

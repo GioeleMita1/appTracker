@@ -1,0 +1,72 @@
+<div class="diary-page">
+  <header class="page-header">
+    <div class="header-text">
+      <h1 class="ph-h1">Diario</h1>
+      <p class="ph-body header-sub">I tuoi pensieri e appunti</p>
+    </div>
+  </header>
+  <div class="new-entry-row">
+    <button type="button" class="ph-btn ph-btn-primary new-entry-btn" (click)="openCreate()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nuova nota
+    </button>
+  </div>
+
+  @if (isCreating() || selectedId()) {
+    <section class="diary-editor ph-card">
+      <h2 class="ph-h3 editor-title">{{ isCreating() ? 'Nuova nota' : 'Modifica nota' }}</h2>
+      <label class="label" for="diary-title">Titolo</label>
+      <input
+        id="diary-title"
+        type="text"
+        class="ph-input diary-title-input"
+        placeholder="Titolo della nota"
+        [ngModel]="editTitle()"
+        (ngModelChange)="editTitle.set($event)"
+      />
+      <label class="label" for="diary-content">Contenuto</label>
+      <textarea
+        id="diary-content"
+        class="ph-input diary-content-input"
+        rows="6"
+        placeholder="Scrivi qui..."
+        [ngModel]="editContent()"
+        (ngModelChange)="editContent.set($event)"
+      ></textarea>
+      <div class="editor-actions">
+        <button type="button" class="ph-btn ph-btn-secondary" (click)="cancel()">Annulla</button>
+        <button type="button" class="ph-btn ph-btn-primary" (click)="save()">Salva</button>
+      </div>
+    </section>
+  }
+
+  <section class="diary-list">
+    @for (entry of entries(); track entry.id) {
+      <article class="diary-card ph-card">
+        <button type="button" class="diary-card-inner" (click)="openEdit(entry)">
+          <h3 class="ph-h3 diary-card-title">{{ entry.title }}</h3>
+          <p class="ph-body diary-card-preview">{{ preview(entry.content) }}</p>
+          <span class="ph-caption diary-card-date">{{ formatDate(entry.updatedAt) }}</span>
+        </button>
+        <button
+          type="button"
+          class="ph-btn ph-btn-icon small danger diary-delete"
+          (click)="deleteEntry(entry); $event.stopPropagation()"
+          aria-label="Elimina"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            <line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
+          </svg>
+        </button>
+      </article>
+    }
+    @empty {
+      <div class="empty-state">
+        <p class="ph-body">Nessuna nota. Tocca "Nuova nota" per iniziare.</p>
+      </div>
+    }
+  </section>
+</div>

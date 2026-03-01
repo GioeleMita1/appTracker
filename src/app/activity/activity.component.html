@@ -1,0 +1,152 @@
+<div class="activity-page">
+  <header class="page-header">
+    <h1 class="ph-h1 gym-title">Palestra</h1>
+    <p class="ph-body header-sub">{{ totalThisWeek() }} questa settimana</p>
+  </header>
+
+  <!-- Strip giorni (pillole) -->
+  <section class="day-strip-section">
+    <div class="day-strip" role="tablist">
+      @for (pill of dayPills(); track pill.dateStr) {
+        <button
+          type="button"
+          class="day-pill"
+          [class.selected]="effectiveSelectedDate() === pill.dateStr"
+          [class.has-gym]="isGymDay(pill.dateStr) && effectiveSelectedDate() !== pill.dateStr"
+          (click)="selectDay(pill.dateStr)"
+        >
+          <span class="day-pill-name">{{ pill.dayName }}</span>
+          <span class="day-pill-num">{{ pill.dayNum }}</span>
+        </button>
+      }
+    </div>
+  </section>
+
+  <!-- Allenamento del giorno / Prossimo allenamento -->
+  <section class="next-training-section">
+    <h2 class="section-title">Allenamento del giorno</h2>
+    <div class="next-training-card ph-card">
+      @if (selectedEntry(); as entry) {
+        <div class="training-card-content">
+          <p class="training-date ph-caption">{{ formatDateDisplay(effectiveSelectedDate()) }}</p>
+          @if (entry.note) {
+            <p class="training-note ph-body">{{ entry.note }}</p>
+          } @else {
+            <p class="training-note ph-body ph-caption">Allenamento completato</p>
+          }
+          <div class="training-actions">
+            <button type="button" class="ph-btn ph-btn-primary start-btn" (click)="openAdd(effectiveSelectedDate())">
+              Modifica nota
+            </button>
+            <button type="button" class="ph-btn ph-btn-icon small danger" (click)="deleteEntry()" aria-label="Elimina">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                <line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      } @else {
+        <div class="training-card-content empty">
+          <p class="training-date ph-caption">{{ formatDateDisplay(effectiveSelectedDate()) }}</p>
+          <p class="training-note ph-body">Nessun allenamento segnato</p>
+          <button type="button" class="ph-btn ph-btn-primary start-btn" (click)="openAdd(effectiveSelectedDate())">
+            Segna allenamento
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Form aggiungi/modifica (visibile quando isAdding) -->
+  @if (isAdding()) {
+    <section class="detail-card ph-card">
+      <h3 class="ph-h3">{{ selectedEntry() ? 'Modifica nota' : 'Aggiungi allenamento' }}</h3>
+      <label class="label" for="note-input">Nota (opzionale)</label>
+      <textarea
+        id="note-input"
+        class="ph-input note-textarea"
+        rows="3"
+        placeholder="Es. Upper body, 45 min..."
+        [ngModel]="noteInput()"
+        (ngModelChange)="noteInput.set($event)"
+      ></textarea>
+      <div class="detail-buttons">
+        <button type="button" class="ph-btn ph-btn-secondary" (click)="cancel()">Annulla</button>
+        <button type="button" class="ph-btn ph-btn-primary" (click)="saveEntry()">Salva</button>
+      </div>
+    </section>
+  }
+
+  <!-- Questa settimana -->
+  <section class="this-week-section">
+    <h2 class="section-title">Questa settimana</h2>
+    <div class="this-week-card ph-card">
+      <div class="week-stats">
+        <div class="week-stat">
+          <span class="week-stat-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </span>
+          <span class="week-stat-value">{{ totalThisWeek() }}</span>
+          <span class="week-stat-label">Allenamenti</span>
+        </div>
+        <div class="week-stat">
+          <span class="week-stat-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </span>
+          <span class="week-stat-value">{{ totalThisMonth() }}</span>
+          <span class="week-stat-label">Questo mese</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendario mensile -->
+  <section class="calendar-section">
+    <h2 class="section-title">Calendario</h2>
+    <div class="calendar-card ph-card">
+      <div class="calendar-nav">
+        <button type="button" class="ph-btn ph-btn-icon calendar-arrow" (click)="prevCalendarMonth()" aria-label="Mese precedente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <span class="calendar-month-label">{{ calendarMonthLabel() }}</span>
+        <button type="button" class="ph-btn ph-btn-icon calendar-arrow" (click)="nextCalendarMonth()" aria-label="Mese successivo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="calendar-weekdays">
+        @for (name of dayNames; track name) {
+          <span class="calendar-weekday">{{ name }}</span>
+        }
+      </div>
+      <div class="calendar-grid">
+        @for (cell of calendarGrid(); track cell.dateStr ?? cell.day ?? $index) {
+          @if (cell.day === null) {
+            <div class="cal-cell cal-cell-empty"></div>
+          } @else {
+            <button
+              type="button"
+              class="cal-cell cal-cell-day"
+              [class.has-gym]="cell.dateStr && isGymDay(cell.dateStr)"
+              [class.selected]="effectiveSelectedDate() === cell.dateStr"
+              (click)="cell.dateStr ? selectDay(cell.dateStr) : null"
+            >
+              <span class="cal-day-num">{{ cell.day }}</span>
+              @if (cell.dateStr && isGymDay(cell.dateStr)) {
+                <span class="cal-dot" aria-hidden="true"></span>
+              }
+            </button>
+          }
+        }
+      </div>
+    </div>
+  </section>
+</div>

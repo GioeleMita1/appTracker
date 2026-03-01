@@ -1,0 +1,57 @@
+<section class="transaction-list-section">
+  <h2 class="section-title">Storico movimenti</h2>
+  <div class="list-container">
+    @for (t of transactions(); track t.id) {
+      <article
+        class="transaction-card ph-card"
+        [class.income]="t.type === 'income'"
+        [class.expense]="t.type === 'expense'"
+        [class.removing]="removingId() === t.id"
+      >
+        <button type="button" class="card-main" (click)="onEdit(t)">
+          <span class="card-icon" [attr.aria-label]="t.type === 'income' ? 'Entrata' : 'Uscita'">
+            @if (t.type === 'income') {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="19" x2="12" y2="5"/>
+                <polyline points="5 12 12 5 19 12"/>
+              </svg>
+            } @else {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <polyline points="19 12 12 19 5 12"/>
+              </svg>
+            }
+          </span>
+          <div class="card-content">
+            <span class="card-category">{{ t.category }}</span>
+            <span class="card-date ph-caption">{{ formatDate(t.date) }}</span>
+            @if (t.note) {
+              <p class="card-note ph-body">{{ t.note }}</p>
+            }
+          </div>
+          <span class="card-amount" [class.income]="t.type === 'income'" [class.expense]="t.type === 'expense'">
+            {{ t.type === 'income' ? '+' : '−' }} {{ formatCurrency(t.amount) }}
+          </span>
+        </button>
+        <button
+          type="button"
+          class="ph-btn ph-btn-icon small danger delete-btn"
+          (click)="onDelete(t); $event.stopPropagation()"
+          aria-label="Elimina"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            <line x1="10" y1="11" x2="10" y2="17"/>
+            <line x1="14" y1="11" x2="14" y2="17"/>
+          </svg>
+        </button>
+      </article>
+    }
+    @empty {
+      <div class="empty-state">
+        <p class="ph-body">Nessun movimento. Aggiungi un'entrata o un'uscita per iniziare.</p>
+      </div>
+    }
+  </div>
+</section>

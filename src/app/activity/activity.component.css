@@ -1,0 +1,329 @@
+.activity-page {
+  padding: var(--ph-space-md) var(--ph-space-md) var(--ph-space-xl);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: var(--ph-space-md);
+}
+
+.gym-title {
+  margin-bottom: var(--ph-space-xs);
+}
+
+.header-sub {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--ph-text-secondary);
+}
+
+/* Strip giorni a pillole */
+.day-strip-section {
+  margin-bottom: var(--ph-space-lg);
+}
+
+.day-strip {
+  display: flex;
+  gap: var(--ph-space-sm);
+  overflow-x: auto;
+  padding: var(--ph-space-xs) 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.day-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.day-pill {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  padding: var(--ph-space-sm) var(--ph-space-md);
+  border-radius: var(--ph-radius-md);
+  border: none;
+  background: var(--ph-border-light);
+  color: var(--ph-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.day-pill:active {
+  transform: scale(0.98);
+}
+
+.day-pill .day-pill-name {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.day-pill .day-pill-num {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--ph-text-primary);
+}
+
+.day-pill.has-gym {
+  background: rgba(26, 26, 26, 0.08);
+  color: var(--ph-text-primary);
+}
+
+.day-pill.selected {
+  background: var(--ph-accent);
+  color: var(--ph-accent-on);
+}
+
+.day-pill.selected .day-pill-num {
+  color: var(--ph-accent-on);
+}
+
+/* Sezione Allenamento del giorno */
+.next-training-section {
+  margin-bottom: var(--ph-space-lg);
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ph-text-primary);
+  margin: 0 0 var(--ph-space-sm);
+}
+
+.next-training-card {
+  padding: var(--ph-space-lg);
+}
+
+.training-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ph-space-sm);
+}
+
+.training-card-content.empty {
+  gap: var(--ph-space-md);
+}
+
+.training-date {
+  margin: 0;
+  color: var(--ph-text-muted);
+}
+
+.training-note {
+  margin: 0;
+  color: var(--ph-text-primary);
+}
+
+.training-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ph-space-sm);
+  margin-top: var(--ph-space-sm);
+}
+
+.start-btn {
+  flex: 1;
+  min-width: 0;
+}
+
+.ph-btn-icon.small {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.ph-btn-icon.danger:hover {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* Form dettaglio (aggiungi/modifica) */
+.detail-card {
+  padding: var(--ph-space-lg);
+  margin-bottom: var(--ph-space-lg);
+  animation: fadeIn 0.25s ease;
+}
+
+.detail-card .ph-h3 {
+  margin-bottom: var(--ph-space-md);
+}
+
+.label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ph-text-secondary);
+  margin-bottom: var(--ph-space-sm);
+}
+
+.note-textarea {
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: var(--ph-space-md);
+}
+
+.detail-buttons {
+  display: flex;
+  gap: var(--ph-space-sm);
+  justify-content: flex-end;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Questa settimana */
+.this-week-section {
+  margin-bottom: var(--ph-space-lg);
+}
+
+.this-week-card {
+  padding: var(--ph-space-lg);
+}
+
+.week-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ph-space-lg);
+}
+
+.week-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ph-space-sm);
+  padding: var(--ph-space-md);
+  background: var(--ph-border-light);
+  border-radius: var(--ph-radius-md);
+}
+
+.week-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--ph-radius-full);
+  background: var(--ph-primary-bg);
+  color: var(--ph-accent);
+  box-shadow: var(--ph-card-shadow);
+}
+
+.week-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ph-text-primary);
+}
+
+.week-stat-label {
+  font-size: 0.8125rem;
+  color: var(--ph-text-secondary);
+}
+
+/* Calendario mensile */
+.calendar-section {
+  margin-bottom: var(--ph-space-xl);
+}
+
+.calendar-card {
+  padding: var(--ph-space-lg);
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ph-space-md);
+}
+
+.calendar-month-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ph-text-primary);
+}
+
+.calendar-arrow {
+  width: 36px;
+  height: 36px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: var(--ph-space-sm);
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--ph-text-muted);
+  text-transform: uppercase;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.cal-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: var(--ph-radius-sm);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.cal-cell-empty {
+  cursor: default;
+}
+
+.cal-cell-day {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ph-text-primary);
+  position: relative;
+}
+
+.cal-cell-day:active {
+  transform: scale(0.95);
+}
+
+.cal-cell-day:hover {
+  background: var(--ph-border-light);
+}
+
+.cal-cell-day.has-gym {
+  background: rgba(26, 26, 26, 0.08);
+  color: var(--ph-accent);
+}
+
+.cal-cell-day.has-gym .cal-dot {
+  position: absolute;
+  bottom: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ph-accent);
+}
+
+.cal-cell-day.selected {
+  background: var(--ph-accent);
+  color: var(--ph-accent-on);
+}
+
+.cal-cell-day.selected .cal-dot {
+  background: var(--ph-accent-on);
+}

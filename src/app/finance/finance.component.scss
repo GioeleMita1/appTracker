@@ -1,0 +1,27 @@
+.finance-page {
+  padding: var(--ph-space-md) var(--ph-space-md) var(--ph-space-xl);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: var(--ph-space-sm);
+}
+
+.page-header .header-text {
+  min-width: 0;
+}
+
+.header-sub {
+  margin: 0;
+}
+
+.add-row {
+  margin-bottom: var(--ph-space-lg);
+}
+
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ph-space-sm);
+}

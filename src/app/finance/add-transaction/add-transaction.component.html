@@ -1,0 +1,82 @@
+<section class="add-transaction ph-card">
+  <h3 class="ph-h3 form-title">{{ transaction() ? 'Modifica movimento' : 'Nuovo movimento' }}</h3>
+
+  <div class="type-tabs" role="tablist">
+    <button
+      type="button"
+      class="type-tab"
+      [class.selected]="type() === 'income'"
+      (click)="setType('income')"
+    >
+      Entrata
+    </button>
+    <button
+      type="button"
+      class="type-tab"
+      [class.selected]="type() === 'expense'"
+      (click)="setType('expense')"
+    >
+      Uscita
+    </button>
+  </div>
+  @if (typeError()) {
+    <p class="field-error">{{ typeError() }}</p>
+  }
+
+  <label class="label" for="amount">Importo</label>
+  <input
+    id="amount"
+    type="text"
+    inputmode="decimal"
+    class="ph-input"
+    placeholder="0,00"
+    [ngModel]="amount()"
+    (ngModelChange)="setAmount($event)"
+  />
+  @if (amountError()) {
+    <p class="field-error">{{ amountError() }}</p>
+  }
+
+  <label class="label" for="category">Categoria</label>
+  <select
+    id="category"
+    class="ph-input"
+    [ngModel]="category()"
+    (ngModelChange)="setCategory($event)"
+  >
+    <option value="">Seleziona categoria</option>
+    @for (cat of categories; track cat) {
+      <option [value]="cat">{{ cat }}</option>
+    }
+  </select>
+  @if (categoryError()) {
+    <p class="field-error">{{ categoryError() }}</p>
+  }
+
+  <label class="label" for="date">Data</label>
+  <input
+    id="date"
+    type="date"
+    class="ph-input"
+    [ngModel]="date()"
+    (ngModelChange)="setDate($event)"
+  />
+  @if (dateError()) {
+    <p class="field-error">{{ dateError() }}</p>
+  }
+
+  <label class="label" for="note">Nota (opzionale)</label>
+  <textarea
+    id="note"
+    class="ph-input note-input"
+    rows="2"
+    placeholder="Descrizione opzionale"
+    [ngModel]="note()"
+    (ngModelChange)="setNote($event)"
+  ></textarea>
+
+  <div class="form-actions">
+    <button type="button" class="ph-btn ph-btn-secondary" (click)="cancel()">Annulla</button>
+    <button type="button" class="ph-btn ph-btn-primary" (click)="save()">Salva</button>
+  </div>
+</section>
